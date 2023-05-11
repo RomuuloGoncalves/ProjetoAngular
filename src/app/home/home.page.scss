@@ -5,6 +5,7 @@
 
 .row {
   height: 100vh;
+  overflow: hidden;
 }
 
 #col__img {
@@ -45,4 +46,30 @@
 ion-button {
   width: 200px;
   border-radius: 10px;
+}
+
+@media(max-width:800px) {
+  #col__img {
+    display: none;
+  }
+
+  #col__cadastro {
+    justify-content: start;
+  }
+
+  #titulo {
+    text-align: center;
+    color: #ffff;
+    width: 100vw;
+    background: url("https://images.pexels.com/photos/16191090/pexels-photo-16191090.jpeg");
+    background-size: cover;
+  }
+
+  #row__infos {
+    gap: 10px;
+  }
+
+  #login {
+    gap: 5px;
+  }
 }
