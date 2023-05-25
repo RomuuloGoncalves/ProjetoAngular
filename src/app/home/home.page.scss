@@ -1,22 +1,33 @@
 .calendario{
   &__foto{
-
+    border-radius: 10px;
   }
 
   &__mes{
-    font-size: 1.6;
-    --color: #9d0303
+    font-size: 1.6rem;
+    color: #9d0303
   }
 
   &__ano{
-
+    font-size: 1.6rem;
+    color: #9d0303
   }
 
   &__dia-semana{
+    font-size: 1.3rem;
+    font-weight: 700;
 
   }
 
   &__dia{
+    padding: 10px;
+    border-radius: 20%;
+    font-size: 1.2rem;
+  }
 
+  &__dia:hover{
+    cursor: pointer;
+    background-color: rgb(218, 69, 69);
+    color: #ffff;
   }
 }

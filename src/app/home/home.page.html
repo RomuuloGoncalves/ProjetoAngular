@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Calendário
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -25,14 +25,14 @@
         <ion-col size="6" class="ion-text-end">
           <ion-label class="calendario__ano">
           {{this.calendario.ano}}
-          <ion-label class="calendario__ano">
+          </ion-label>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ng-container *ngFor="let dia_semana of this.calendario.dias_da_semana">
           <ion-col>
-            <ion-label class="calendario_dia-semana">
+            <ion-label class="calendario__dia-semana">
               {{dia_semana}}
             </ion-label>
           </ion-col>
