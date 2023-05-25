@@ -1,27 +1,22 @@
-#container {
-  text-align: center;
+.calendario{
+  &__foto{
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+  }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+  &__mes{
+    font-size: 1.6;
+    --color: #9d0303
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  &__ano{
 
-  color: #8c8c8c;
+  }
 
-  margin: 0;
-}
+  &__dia-semana{
 
-#container a {
-  text-decoration: none;
+  }
+
+  &__dia{
+
+  }
 }
