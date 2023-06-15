@@ -229,4 +229,10 @@ export class HomePage {
         }
       }    
   ]
+
+  seguir_status:string = "Seguir"
+  setSeguir(){
+    this.seguir_status = this.seguir_status == "Seguir" ? "Seguindo" : "Seguir" 
+    this.seguir_status == "Seguir" ? Number(this.metricas_sociais.seguidores) + 1 : Number(this.metricas_sociais.seguidores) - 1 
+  }
 }
