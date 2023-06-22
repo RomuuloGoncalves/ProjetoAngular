@@ -1,39 +1,18 @@
 <ion-content [fullscreen]="true">
-  <ion-row color="primary" class="calculadora ion-justify-content-center ion-align-items-center">
-
-<ion-app>
-  <ion-menu contentId="main-content">
-    <ion-header size>
-      <ion-toolbar color="tertiary">
-        <ion-title>Histórico</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">This is the menu content.</ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-  </div>
-</ion-app>
-
-    <ion-col size="12" sizeLg="6" class="rounded ion-justify-content-center ion-align-items-center">
+   <ion-row class="screen ion-justify-content-center ion-align-items-center">
+    <ion-col size="12" sizeLg="6" class="calculadora rounded ion-justify-content-center ion-align-items-center">
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size="11.5" class="tela rounded mt-2 ion-justify-content-end ion-align-items-center">
           <ion-label>{{resultado}}</ion-label>
         </ion-col>
-    
+
         <ion-col size="12" class="teclado">
           <ion-grid>
             <ion-row>
               <ion-col><ion-button color="secondary">C</ion-button></ion-col>
               <ion-col><ion-button color="secondary">+/-</ion-button></ion-col>
-              <ion-col><ion-button color="secondary"><img src="../../assets/img/delete_icon.svg"alt="Delete"></ion-button></ion-col>
+              <ion-col><ion-button color="secondary"><img src="../../assets/img/delete_icon.svg"
+                    alt="Delete"></ion-button></ion-col>
               <ion-col><ion-button color="secondary">/</ion-button></ion-col>
             </ion-row>
             <ion-row>
@@ -60,9 +39,24 @@
               <ion-col><ion-button color="secondary">=</ion-button></ion-col>
             </ion-row>
           </ion-grid>
-          </ion-col>
+        </ion-col>
       </ion-row>
     </ion-col>
-   
   </ion-row>
+
+  <ion-app>
+    <ion-menu contentId="main-content">
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          <ion-title>Histórico</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">This is the menu content.</ion-content>
+    </ion-menu>
+    <div class="ion-page" id="main-content">
+      <ion-buttons slot="start">
+        <ion-menu-button><ion-icon name="time" color="tertiary"></ion-icon></ion-menu-button>
+      </ion-buttons>
+    </div>
+  </ion-app>
 </ion-content>

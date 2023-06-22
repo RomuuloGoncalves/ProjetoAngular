@@ -1,10 +1,11 @@
-.calculadora{
+.screen {
   height: 100vh;
   background-color: var(--ion-color-primary);
 }
 
 .tela{
-  height: 30vh;
+  height: 25vh;
+  padding: 25px;
   background-color: var(--ion-color-tertiary);
   flex: 1 1 auto;
   font-size: 3rem;
@@ -12,7 +13,7 @@
 }
 
 .teclado{
-  height: 60vh;
+  height: 65vh;
   flex: 1 0 auto;
 }
 
@@ -37,5 +38,11 @@ ion-button{
   height: 100%;
   flex: 1 1 auto;
   font-size: 1.3rem;
-  --border-radius: 0;
+  --border-radius: 5px;
+}
+
+@media(max-width:600px){
+  .screen{
+    background-color: #fff;
+  }
 }
