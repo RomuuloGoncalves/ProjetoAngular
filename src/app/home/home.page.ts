@@ -8,6 +8,10 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule],
 })
+
 export class HomePage {
+
   constructor() {}
+  
+  resultado: number = 0;
 }
