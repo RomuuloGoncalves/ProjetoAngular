@@ -1,4 +1,6 @@
 <ion-content [fullscreen]="true">
+
+  <!-- Histórico -->
   <ion-menu contentId="main-content">
     <ion-header>
       <ion-toolbar color="tertiary">
@@ -6,12 +8,20 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="historico ion-padding">
-      <ng-container *ngFor="let operacaoHistorico of this.historico">
+      <ng-container *ngFor="let operacaoHistorico of this.historicoOperacoes; let i = index">
         <ion-row class="historico__operacao" class="tecla" (click)="this.mudarOperacao(operacaoHistorico)">
           <ion-col>
-            <ion-label>
-              {{operacaoHistorico}}
-            </ion-label>
+            <ion-list>
+              <ion-item-group>
+                <ion-item>
+                  <ion-label color="medium"> {{operacaoHistorico}} </ion-label>
+                </ion-item>
+
+                <ion-item-divider>
+                  <ion-label style="font-size:1.2rem;" color="dark">={{historicoRespostas[i]}}</ion-label>
+                </ion-item-divider>
+              </ion-item-group>
+            </ion-list>
           </ion-col>
         </ion-row>
       </ng-container>
@@ -22,6 +32,8 @@
       <ion-menu-button><ion-icon name="time" color="tertiary"></ion-icon></ion-menu-button>
     </ion-buttons>
   </div>
+
+  <!-- Calculadora -->
   <ion-row class="screen ion-justify-content-center ion-align-items-center">
     <ion-col size="12" sizeLg="6" class="calculadora rounded ion-justify-content-center ion-align-items-center">
       <ion-row class="ion-justify-content-center ion-align-items-center">
@@ -37,34 +49,41 @@
         <ion-col size="12" class="calculadora__teclado">
           <ion-grid>
             <ion-row>
-              <ion-col><ion-button class="tecla" (click)="this.limparOperacao()" color="secondary">C</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('')" color="secondary">+/-</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.limparCharOperacao()" color="secondary"><img src="../../assets/img/delete_icon.svg"
-                    alt="Delete"></ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('/')" color="secondary">/</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.limparOperacao()"
+                  color="secondary">C</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.addOperacao('')"
+                  color="secondary">+/-</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.limparCharOperacao()" color="secondary"><img
+                    src="../../assets/img/delete_icon.svg" alt="Delete"></ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.addOperacao('/')"
+                  color="secondary">/</ion-button></ion-col>
             </ion-row>
             <ion-row>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('7')">7</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('8')">8</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('9')">9</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('*')" color="secondary">*</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.addOperacao('*')"
+                  color="secondary">*</ion-button></ion-col>
             </ion-row>
             <ion-row>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('4')">4</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('5')">5</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('6')">6</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('-')" color="secondary">-</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.addOperacao('-')"
+                  color="secondary">-</ion-button></ion-col>
             </ion-row>
             <ion-row>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('1')">1</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('2')">2</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('3')">3</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('+')" color="secondary">+</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.addOperacao('+')"
+                  color="secondary">+</ion-button></ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="6"><ion-button class="tecla" (click)="this.addOperacao('0')">0</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao(',')">,</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.realizarOperacao()" color="secondary">=</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.realizarOperacao()"
+                  color="secondary">=</ion-button></ion-col>
             </ion-row>
           </ion-grid>
         </ion-col>

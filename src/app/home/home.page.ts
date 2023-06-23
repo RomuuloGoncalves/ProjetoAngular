@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
 export class HomePage {
   constructor() {}
 
-  historico: Array<string> = [];
+  historicoOperacoes: Array<string> = [];
+  historicoRespostas: Array<string> = [];
   operacao: string = '';
   resultado: number = 0;
 
@@ -32,7 +33,8 @@ export class HomePage {
   realizarOperacao() {
     if (this.operacao != '') {
       this.resultado = eval(this.operacao);
-      this.historico.push(this.operacao);
+      this.historicoOperacoes.push(this.operacao);
+      this.historicoRespostas.push(String(this.resultado));
       this.operacao = String(this.resultado);
     }
   }
@@ -48,6 +50,6 @@ export class HomePage {
   }
 
   salvarHistorico() {
-    this.historico.push(this.operacao);
+    this.historicoOperacoes.push(this.operacao);
   }
 }
