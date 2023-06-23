@@ -3,22 +3,36 @@
   background-color: var(--ion-color-primary);
 }
 
-.tela{
-  height: 25vh;
-  padding: 25px;
-  background-color: var(--ion-color-tertiary);
-  flex: 1 1 auto;
-  font-size: 3rem;
-  color: #ffffff;
-  flex-direction: column;
-}
-#operacao{
-  font-size: 1rem;
-}
+.calculadora {
+  background-color: #fff;
 
-.teclado{
-  height: 65vh;
-  flex: 1 0 auto;
+  &__tela {
+    height: 25vh;
+    padding: 25px;
+    background-color: var(--ion-color-tertiary);
+    flex: 1 1 auto;
+    font-size: 3rem;
+    color: #ffffff;
+    flex-direction: column;
+
+    .operacao{
+      height: 1rem;
+      font-size: 1rem;
+    }
+  }
+  
+  &__teclado{
+    height: 65vh;
+    flex: 1 0 auto;
+
+    .tecla {
+      height: 100%;
+      width: 100%;
+      flex: 1 1 auto;
+      font-size: 1.3rem;
+      --border-radius: 5px;
+    }
+  }
 }
 
 ion-grid{
@@ -29,21 +43,6 @@ ion-grid{
 
 ion-row {
   flex: 1 1 auto;
-}
-
-ion-col {
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-ion-button{
-  height: 100%;
-  width: 100%;
-  flex: 1 1 auto;
-  font-size: 1.3rem;
-  --border-radius: 5px;
 }
 
 @media(max-width:600px){
