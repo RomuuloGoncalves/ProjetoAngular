@@ -13,5 +13,6 @@ export class HomePage {
 
   constructor() {}
   
+  operacao: number = 432435435456465264525465656256256245;
   resultado: number = 0;
 }
