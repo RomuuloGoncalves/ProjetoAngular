@@ -38,7 +38,7 @@
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size="11.5" class="calculadora__tela rounded mt-2 ion-justify-content-end ion-align-items-end">
           <ion-row class="ion-justify-content-end">
-            <ion-label class="operacao">{{this.operacao.replaceAll('.', ',')}}</ion-label>
+            <ion-label class="operacao">{{(this.operacao) ? this.operacao.replaceAll('.', ',') : 0}}</ion-label>
           </ion-row>
           <ion-row class="ion-justify-content-end">
             <ion-label class="resultado">{{this.resultado.toString().replaceAll('.', ',')}}</ion-label>
@@ -79,10 +79,10 @@
                   color="secondary">+</ion-button></ion-col>
             </ion-row>
             <ion-row>
-              <ion-col><ion-button class="tecla" (click)="this.addOperacao('0')">+/</ion-button></ion-col>
+              <ion-col><ion-button class="tecla" (click)="this.inverterSinal()">+/</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('0')">0</ion-button></ion-col>
               <ion-col><ion-button class="tecla" (click)="this.addOperacao('.')">,</ion-button></ion-col>
-              <ion-col><ion-button class="tecla" (click)="this.realizarOperacao()"
+              <ion-col><ion-button class="tecla" (click)="this.finalizaOperacao()"
                   color="secondary">=</ion-button></ion-col>
             </ion-row>
           </ion-grid>
