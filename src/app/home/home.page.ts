@@ -12,19 +12,25 @@ import { CommonModule } from '@angular/common';
 export class HomePage {
   constructor() {}
 
-  historicoOperacoes: Array<string> = [];
-  historicoRespostas: Array<string> = [];
+  historicoOperacoes: Array<any> = [];
+  caracteresEspeciais: Array<string> = ['+', '-', '/', '%', '*', '.'];
   operacao: string = '';
   resultado: number = 0;
 
   addOperacao(char: string) {
-    this.operacao += char;
-    this.preResultado();
+    const ultimoCaracterEhEspecial = this.caracteresEspeciais.includes(this.operacao.slice(-1));
+    const novoCaracterEhEspecial = this.caracteresEspeciais.includes(char);
+
+    // Realizar Validação
+    if (true) {
+      this.operacao += char;
+      this.preResultado();
+    }
   }
 
   mudarOperacao(operacao: string) {
     this.operacao = operacao;
-    this.preResultado()
+    this.preResultado();
   }
   preResultado() {
     this.resultado = eval(this.operacao);
@@ -33,8 +39,10 @@ export class HomePage {
   realizarOperacao() {
     if (this.operacao != '') {
       this.resultado = eval(this.operacao);
-      this.historicoOperacoes.push(this.operacao);
-      this.historicoRespostas.push(String(this.resultado));
+      this.historicoOperacoes.push({
+        operacao: this.operacao,
+        resultado: this.resultado,
+      });
       this.operacao = String(this.resultado);
     }
   }
