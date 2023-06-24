@@ -10,6 +10,13 @@
     <ion-content class="historico ion-padding">
       <ion-list>
         <ion-item-group>
+          <ng-container *ngIf="!historicoOperacoes.length">
+            <ion-row class="historico__item">
+              <ion-col>
+                <ion-label color="medium" class="historico__operacao">Não há operações</ion-label>
+              </ion-col>
+            </ion-row>
+          </ng-container>
           <ng-container *ngFor="let operacaoHistorico of this.historicoOperacoes; let i = index">
             <ion-row class="historico__item" (click)="this.mudarOperacao(operacaoHistorico.operacao)">
               <ion-col>
