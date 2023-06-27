@@ -49,7 +49,6 @@ export class HomePage {
     ) {
       return true;
     }
-    console.log(5)
     try {
       const aux = eval(operacao + char);
       
@@ -67,19 +66,28 @@ export class HomePage {
   }
 
   inverterSinal(): void {
-    this.finalizaOperacao();
-    this.resultado = this.resultado * -1;
-    this.operacao = this.resultado.toLocaleString();
+    const regexOperacoes =  /[+/()*-]/;
+    const ultimoNumero: any = this.operacao.split(regexOperacoes).at(-1);
+    console.log(!regexOperacoes.test(ultimoNumero))
+    if(ultimoNumero != '') {
+      const pos = this.operacao.lastIndexOf(ultimoNumero);
+      this.operacao = `${this.operacao.substring(0,pos)}(-${ultimoNumero})` ;
+      this.calcResultado();
+    }
   }
 
   calcPorcentagem(): void {
-    const numeros = this.operacao.match(/\d*/);
-    const operacaoSemPorcentagem = this.operacao.split(/\d+%/)[0];
+    const numeros: any = this.operacao.match(/\d+/g);
+    console.log(numeros)
     const porcentagem = Number(numeros?.at(-1)) / 100;
-    const penultimoNumero = numeros?.at(-2);
-    const resultado = eval(`${penultimoNumero}*${porcentagem}`);
-    console.log(operacaoSemPorcentagem, porcentagem, penultimoNumero, resultado)
-    this.operacao = operacaoSemPorcentagem + resultado.toString();
+    if (numeros?.length > 1) {
+      const operacaoSemPorcentagem = this.operacao.split(/\d+%/)[0];
+      const penultimoNumero = numeros?.at(-2);
+      const resultado = eval(`${penultimoNumero}*${porcentagem}`);
+      this.operacao = operacaoSemPorcentagem + resultado.toString();
+    } else {
+      this.operacao = porcentagem.toString();
+    }
   }
 
   calcResultado(operacao: string = this.operacao): void {
