@@ -27,18 +27,26 @@ export class HomePage {
     operacao: string = this.operacao,
     char: string = ''
   ): boolean {
-    const ultimoCharOperacaoEhNumber = !isNaN(Number(operacao.slice(-1)));
+    const ultimoChar = operacao.slice(-1);
+    const ultimoCharOperacaoEhNumber = !isNaN(Number(ultimoChar));
     const regexOperacoes = /[+%./(*-]/;
+    const regexPorcentagemBlock = /[%.]/;
 
     if (operacao === '' && char === '-') {
       return true;
     }
-
     if (operacao === '' && regexOperacoes.test(char)) {
       return false;
     }
-
     if (ultimoCharOperacaoEhNumber && regexOperacoes.test(char)) {
+      return true;
+    }
+
+    if (
+      ultimoChar === '%' &&
+      !regexPorcentagemBlock.test(char) &&
+      regexOperacoes.test(char)
+    ) {
       return true;
     }
 
@@ -63,7 +71,20 @@ export class HomePage {
     this.operacao = this.resultado.toLocaleString();
   }
 
+  calcPorcentagem(operacao: string): string {
+    const result = operacao.replace(/(\d+[+./-])+\d+%/g, (m: string) => {
+      const regexDesmembrarPorcentagem = /\d+|%|[+\-*/]/g;
+
+      const arr: any = m.match(regexDesmembrarPorcentagem);
+      return `${arr[0]}${arr[1]}(${arr[0]}*${arr[2]}/100)`;
+    });
+
+    console.log(result);
+    return result;
+  }
+
   calcResultado(operacao: string = this.operacao): void {
+    operacao = this.calcPorcentagem(operacao);
     try {
       operacao ? (this.resultado = eval(operacao)) : (this.resultado = 0);
     } catch (_) {
