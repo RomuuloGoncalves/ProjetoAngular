@@ -14,14 +14,12 @@ export class HomePage {
 
   historicoOperacoes: Array<any> = [];
   operacao: string = '';
-  resultado: number = 0;
+  resultado: any = 0;
 
   addOperacao(char: string): void {
     if (this.operacaoEhValida(this.operacao, char)) {
       this.operacao += char;
-      if (char === '%') {
-        this.calcPorcentagem();
-      }
+      if (char === '%') this.calcPorcentagem();
       this.calcResultado();
     }
   }
@@ -33,25 +31,19 @@ export class HomePage {
     const ultimoChar: any = operacao?.at(-1);
     const regexCharsEspeciais = /[+%./*-]/;
     const regexPorcentagemBlock = /[%.]/;
-    if (operacao === '' && char === '-') {
-      return true;
-    }
-    if (operacao === '' && regexCharsEspeciais.test(char)) {
-      return false;
-    }
-    if (!regexCharsEspeciais.test(ultimoChar) && regexCharsEspeciais.test(char)) {
-      return true;
-    }
-    if (
-      ultimoChar === '%' &&
-      !regexPorcentagemBlock.test(char) &&
-      regexCharsEspeciais.test(char)
-    ) {
-      return true;
-    }
+    const regexDecimalErrado = /[.]\d+[.]/;
+
+    const ultimoCharEhEspecial = regexCharsEspeciais.test(ultimoChar);
+    const charEhEspecial = regexCharsEspeciais.test(char);
+
+    if (regexDecimalErrado.test(operacao + char)) return false;
+    if (operacao === '' && charEhEspecial) return false;
+    if (!ultimoCharEhEspecial && charEhEspecial) return true;
+    if (ultimoCharEhEspecial && charEhEspecial) return false;
+    if (ultimoChar === '%' && !regexPorcentagemBlock.test(char) && charEhEspecial) return true;
+    
     try {
       const aux = eval(operacao + char);
-      
       return (
         typeof aux === 'number' && Number.isFinite(aux) && !Number.isNaN(aux)
       );
@@ -66,20 +58,20 @@ export class HomePage {
   }
 
   inverterSinal(): void {
-    const regexOperacoes =  /[+/()*-]/;
+    const regexOperacoes = /[+/()*-]/;
     const ultimoNumero: any = this.operacao.split(regexOperacoes).at(-1);
-    console.log(!regexOperacoes.test(ultimoNumero))
-    if(ultimoNumero != '') {
+
+    if (ultimoNumero != '') {
       const pos = this.operacao.lastIndexOf(ultimoNumero);
-      this.operacao = `${this.operacao.substring(0,pos)}(-${ultimoNumero})` ;
+      this.operacao = `${this.operacao.substring(0, pos)}(-${ultimoNumero})`;
       this.calcResultado();
     }
   }
 
   calcPorcentagem(): void {
     const numeros: any = this.operacao.match(/\d+/g);
-    console.log(numeros)
     const porcentagem = Number(numeros?.at(-1)) / 100;
+
     if (numeros?.length > 1) {
       const operacaoSemPorcentagem = this.operacao.split(/\d+%/)[0];
       const penultimoNumero = numeros?.at(-2);
@@ -112,7 +104,15 @@ export class HomePage {
   }
 
   limparCharOperacao(): void {
-    this.operacao = this.operacao.slice(0, -1);
+    if (this.operacao.at(-1) === ')') {
+      const regexNumeroNegativo = /(-\d+[.]*\d*)/;
+      const ultimoNumero: any = this.operacao.match(regexNumeroNegativo)?.at(-1);
+      this.operacao =
+        this.operacao.slice(0, -(ultimoNumero?.length + 3)) +
+        Number(ultimoNumero) * -1;
+    } else {
+      this.operacao = this.operacao.slice(0, -1);
+    }
     this.calcResultado();
   }
 
