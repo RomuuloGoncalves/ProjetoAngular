@@ -72,9 +72,9 @@ export class HomePage {
   }
 
   calcPorcentagem(): void {
-    const numeros: any = this.operacao.match(/\d+/g);
+    const numeros: any = this.operacao.match(/\d+[.]*\d*/g);
     const porcentagem = Number(numeros?.at(-1)) / 100;
-    const operacaoSemPorcentagem = this.operacao.split(/\d+%/)[0];
+    const operacaoSemPorcentagem = this.operacao.split(/\d+[.]*\d*%/)[0];
     const operacao = operacaoSemPorcentagem.at(-1);
     const penultimoNumero = numeros?.at(-2);
 
@@ -99,7 +99,7 @@ export class HomePage {
 
   finalizaOperacao(): void {
     if (
-      !isNaN(Number(this.operacao.slice(0, -1))) &&
+      this.operacao != '' &&
       this.resultado != 'error' &&
       isFinite(this.resultado)
     ) {
