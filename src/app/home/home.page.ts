@@ -14,7 +14,7 @@ export class HomePage {
 
   historicoOperacoes: Array<any> = [];
   operacao: string = '';
-  resultado: any = 0;
+  resultado: any = '';
 
   addOperacao(char: string): void {
     // Checa se juntar determinado caracter é valido
@@ -117,7 +117,7 @@ export class HomePage {
 
   limparOperacao(): void {
     this.operacao = '';
-    this.resultado = 0;
+    this.resultado = '';
   }
 
   limparCharOperacao(): void {
